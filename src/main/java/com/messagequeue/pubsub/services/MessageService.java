@@ -5,6 +5,7 @@ import com.messagequeue.pubsub.repositories.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -27,7 +28,8 @@ public class MessageService {
      * @return
      */
     public Optional<Message> readMessage() {
-        return Optional.of(messageRepo.findAll().get(0));
+        List<Message> messages = messageRepo.findAll();
+        return messages.isEmpty() ? Optional.empty() : Optional.of(messages.get(0));
     }
 
     /**

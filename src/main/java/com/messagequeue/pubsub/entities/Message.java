@@ -1,27 +1,25 @@
 package com.messagequeue.pubsub.entities;
 
+import com.datastax.oss.driver.api.core.uuid.Uuids;
 import lombok.*;
-//import org.springframework.data.cassandra.core.mapping.PrimaryKey;
+import org.springframework.data.cassandra.core.mapping.PrimaryKey;
+import org.springframework.data.cassandra.core.mapping.Table;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.util.UUID;
 
-@Table
+@Table("messages")
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Entity
 public class Message {
 
-    //@PrimaryKey
-    @Id
+    @PrimaryKey
     private @NonNull UUID id;
     private @NonNull String payload;
 
     public Message(String payload) {
+        id = Uuids.endOf(System.currentTimeMillis());
         this.payload = payload;
     }
 }

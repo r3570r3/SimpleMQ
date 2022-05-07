@@ -22,7 +22,7 @@ public class PubSubController {
 
     @PostMapping("/publish")
     public ResponseEntity<Message> publishMessage(@RequestBody Map<String, String> json) {
-        Message m = service.createMessage(json.get("payload"));
+        Message m = service.createMessage(json.get("topic"), 1, json.get("payload"));
         return ResponseEntity.ok(m);
     }
 }

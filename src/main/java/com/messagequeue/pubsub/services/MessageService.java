@@ -19,8 +19,8 @@ public class MessageService {
      * @param payload
      * @return
      */
-    public Message createMessage(String payload) {
-        return messageRepo.save(new Message(payload));
+    public Message createMessage(String topic, int partitionId, String payload) {
+        return messageRepo.save(new Message(topic, 1, payload));
     }
 
     /**
